@@ -1,33 +1,32 @@
-# Compiler
-CC = gcc
+# Include shared definitions for rumprun toolchain variables.
+# This file should define, for example, RUMPRUN_CC and RUMPRUN_TOOLCHAIN_TUPLE.
+include ../Makefile.inc
 
-# Build directory
-BUILD_DIR = build
+# Compiler flags for our hello world application
+CFLAGS += -Wall -Wextra -std=c11
 
-# Output binary
-TARGET = $(BUILD_DIR)/hello-world
+# Name of the intermediate and final binaries
+HELLO_BIN = build/hello-world
+BAKED_BIN = build/hello-world.bin
 
-# Source files
-SRC = main.c
+# Default target: build the baked (unikernel) binary.
+all: $(BAKED_BIN)
 
-# Compiler flags
-CFLAGS = -Wall -Wextra -std=c11
+# Create the build directory if it doesn't exist.
+build:
+	mkdir -p build
 
-# Default rule
-all: $(TARGET)
+# Build the hello world application using the rumprun toolchain.
+# Note: $(RUMPRUN_CC) should be set (e.g., to x86_64-rumprun-netbsd-gcc)
+$(HELLO_BIN): hello.c | build
+	$(RUMPRUN_CC) $(CFLAGS) hello.c -o $(HELLO_BIN)
 
-# Create build directory if it doesn't exist
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
+# “Bake” the binary to produce a rumprun unikernel binary.
+# The rumprun-bake tool extracts the special tuple from the binary;
+# if the binary isn’t built as a proper rumprun application, you’ll see an error.
+$(BAKED_BIN): $(HELLO_BIN)
+	rumprun-bake nrk_generic $(HELLO_BIN) $(BAKED_BIN)
 
-# Compile main.c and store binary in build directory
-$(TARGET): $(BUILD_DIR) $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
-
-# Run the program
-run: $(TARGET)
-	./$(TARGET)
-
-# Clean up generated files
+# Clean up generated files.
 clean:
-	rm -rf $(BUILD_DIR)
+	rm -rf build
