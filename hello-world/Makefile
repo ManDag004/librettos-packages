@@ -1,35 +1,33 @@
-include Makefile.inc
+# Compiler
+CC = gcc
 
-# Our top-level target: we want to end up with build/hello
-all: build/hello
+# Build directory
+BUILD_DIR = build
 
-# The final binary we want: build/hello
-build/hello: build/Makefile
-	$(MAKE) -C build -f ../Hello.make
+# Output binary
+TARGET = $(BUILD_DIR)/hello-world
 
-# We pretend to have a configure script in build/configure.
-# In a real project, you'd run something like "./configure" here.
-build/Makefile: build/configure
-	@echo "Creating Makefile inside build directory..."
-	@touch $@
+# Source files
+SRC = main.c
 
-# "configure" step: we create the build directory, copy or create what's needed.
-build/configure:
-	@mkdir -p build
-	@echo "echo 'Simulated configure script...'" > build/configure
-	@chmod +x build/configure
-	@touch $@
+# Compiler flags
+CFLAGS = -Wall -Wextra -std=c11
 
-# Optional: a patch step, as in your original snippet (unused here).
-# If you had patches, you'd apply them before configuring.
-build/stamp_patch:
-	@echo "(No patches to apply here.)"
-	@touch $@
+# Default rule
+all: $(TARGET)
+
+# Create build directory if it doesn't exist
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+# Compile main.c and store binary in build directory
+$(TARGET): $(BUILD_DIR) $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+
+# Run the program
+run: $(TARGET)
+	./$(TARGET)
 
 # Clean up generated files
-.PHONY: clean distclean
 clean:
-	@rm -rf build
-
-distclean: clean
-	@echo "Nothing else to distclean."
+	rm -rf $(BUILD_DIR)
