@@ -1,0 +1,485 @@
+    1  ls
+    2  pwd
+    3  ls ../
+    4  ls ../systopia/
+    5  ls ../ubuntu/
+    6  sudo
+    7  sudo ls ../
+    8  ls
+    9  git clone https://github.com/vmware-labs/node-replicated-kernel.git
+   10  git clone https://github.com/intel/lmbench.git
+   11  cd lmbench/src/
+   12  make results
+   13  apt install make
+   14  sudo apt install make
+   15  sudo ls
+   16  cd ../systopia/
+   17  sudo cd ../systopia/
+   18  cd node-replicated-kernel/
+   19  ls
+   20  nvidia-smi
+   21  lscpu
+   22  free -h
+   23  df -h
+   24  df -h ./
+   25  ls /
+   26  ls /dev/sda1
+   27  cd /dev/sda1
+   28  cd /data1/
+   29  ls
+   30  cd lmbench/src
+   31  make results
+   32  apt install make
+   33  sudo apt install make
+   34  apt install make
+   35  make results
+   36  htop
+   37  cd lmbench/src/
+   38  make results
+   39  sudo apt-get update
+   40  sudo apt-get install build-essential
+   41  make results
+   42  sudo apt-get install libtirpc-dev
+   43  make results
+   44  sudo apt-get update
+   45  sudo apt-get install libtirpc-dev
+   46  make results
+   47  make -e results CPPFLAGS="-I/usr/include/tirpc" LDFLAGS="-ltirpc"
+   48  make results
+   49  /var/tmp/
+   50  cd /var/tmp
+   51  ls
+   52  cd lmbench
+   53  ls -s
+   54  code .
+   55  cd /dev/tty
+   56  cd dev
+   57  cd /dev
+   58  ls
+   59  tmux
+   60  tmux ls
+   61  tmux new -s lmbench-test
+   62  cd lmbench/src/
+   63  make see
+   64  make
+   65  make see
+   66  code /dev/tty
+   67  cd dev
+   68  cd /dev
+   69  nano tty
+   70  ls -la
+   71  htop
+   72  tmux a -t lm
+   73  cd lmbench/src/
+   74  make
+   75  make see
+   76  cd /home/mdaga/lmbench/results/x86_64-linux-gnu
+   77  ls -la
+   78  mkdir -p ~/miniconda3
+   79  wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+   80  bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+   81  rm ~/miniconda3/miniconda.sh
+   82  source ~/miniconda3/bin/activate
+   83  conda init --all
+   84  conda create --name nrk
+   85  conda activate nrk
+   86  tmux a -t lm
+   87  cd node-replicated-kernel/
+   88  bash setup.sh 
+   89  cd kernel
+   90  python3 ./run.py 
+   91  cd node-replicated-kernel/
+   92  sed -i'' -e 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+   93  git submodule update --init
+   94  tmux ls
+   95  conda list envs
+   96  conda activate node
+   97  conda info --envs
+   98  conda activate nrk
+   99  bash setup.sh
+  100  cd kernel/
+  101  python3 ./run.py
+  102  conda activate nrk
+  103  cd node-replicated-kernel/
+  104  cd kernel/
+  105  python3 ./run.py 
+  106  bash setup.sh
+  107  cd ../
+  108  bash setup.sh
+  109  cd kernel/
+  110  python3 ./run.py 
+  111  sudo adduser mdaga kvm
+  112  sudo chmod +666 /dev/kvm
+  113  python3 ./run.py 
+  114  python3 ./run.py --norun
+  115  RUST_BACKTRACE=1 RUST_TEST_THREADS=1 cargo test --bin nrk
+  116  RUST_TEST_THREADS=1 cargo test --features smoke --test integration-test
+  117  RUST_TEST_THREADS=1 cargo test --features smoke --test s00_core_tests
+  118  RUST_TEST_THREADS=1 cargo test --features smoke --test integration-test
+  119  RUST_TEST_THREADS=1 cargo test --features smoke --test s01_kernel_low_tests
+  120  git clone git@github.com:ManDag004/librettos-packages.git
+  121  ssh-keygen -t ed25519 -C "manandaga2004@gmail.com"
+  122  git clone git@github.com:ManDag004/librettos-packages.git
+  123  python3 ./run.py
+  124  conda activate nrk
+  125  cd node-replicated-kernel/kernel/
+  126  RUST_TEST_THREADS=1 cargo test --features smoke --test integration-test
+  127  RUST_TEST_THREADS=1 cargo test --features smoke --test s00_core_tests
+  128  1. `python3 ./run.py`--norun
+  129  python3 ./run.py --norun
+  130  git clone https://github.com/memcached/memcached.git
+  131  cd memcached/
+  132  ./autogen.sh
+  133  pkg -config
+  134  sudo apt install pkg-config
+  135  ./autogen.sh
+  136  ./configure
+  137  make -j
+  138  ls
+  139  htop
+  140  cd node-replicated-kernel/
+  141  git checkout bench/shardedmemcache
+  142  git stash
+  143  git checkout bench/shardedmemcache
+  144  conda activate nrk
+  145  cd kernel/
+  146  python3 ./run.py --norun
+  147  gcc -v
+  148  dnf list gcc
+  149  sudo apt install gcc-11 g++-11
+  150  gcc -v
+  151  sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 50
+  152  sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 40
+  153  sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 50
+  154  sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 40
+  155  gcc -v
+  156  python3 ./run.py --norun
+  157  python3 ./run.py -v
+  158  RUST_TEST_THREADS=1 cargo test --features smoke --test s00_core_tests
+  159  RUST_TEST_THREADS=1 cargo test --features smoke --test s00_core_tests -v
+  160  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -x s10_memcached_benchmark_internal -v
+  161  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- -x s10_memcached_benchmark_internal -v
+  162  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal -v
+  163  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal
+  164  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks --ignored s10_memcached_benchmark_internal
+  165  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- --ignored s10_memcached_benchmark_internal
+  166  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- --ignored s10_memcached_benchmark_internal --no-capture
+  167  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- --ignored s10_memcached_benchmark_internal --no\capture
+  168  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- --ignored s10_memcached_benchmark_internal --nocapture
+  169  cd /home/mdaga/node-replicated-kernel/target/x86_64-nrk-none/release/build/rkapps-b81ce854b17d3eb0/out/memcached-bench
+  170  make
+  171  cd build
+  172  make
+  173  ./autogen.sh
+  174  sudo apt-get install autotools-dev
+  175  sudo apt-get install automake
+  176  sudo apt-get install libevent-dev
+  177  ./autogen.sh
+  178  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- --ignored s10_memcached_benchmark_internal --nocapture
+  179  conda activate nrk
+  180  python3 ./run.py --norun > output.txt 2>&1
+  181  cd node-replicated-kernel/
+  182  git stash list
+  183  git checkout master
+  184  git stash pop stash@{0}
+  185  conda activate nrk
+  186  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- --ignored s10_memcached_benchmark_internal --nocapture
+  187  RUST_TEST_THREADS=1 cargo test --features smoke --test integration-test
+  188  RUST_TEST_THREADS=1 cargo test --features smoke --test s11_rackscale_benchmarks
+  189  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks
+  190  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- --ignored s10_memcached_benchmark_internal --nocapture
+  191  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  192  find librettos-packages
+  193  find build
+  194  help find
+  195  info find
+  196  find --help
+  197  htop
+  198  conda activate nrk
+  199  cd node-replicated-kernel/
+  200  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s11_hello_world --nocapture
+  201  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello_world_test --nocapture
+  202  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  203  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello_world --nocapture
+  204  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello_world_test --nocapture
+  205  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  206  cd kernel/
+  207  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  208  git pull
+  209  git checkout master
+  210  git pull
+  211  git submodule update --init
+  212  cd ../..
+  213  htop
+  214  cd node-replicated-kernel/
+  215  find . \( -name "memcachedbench.bin" -o -name "memcached" \) 2>/dev/null
+  216  find . \( -name "monetdbd.bin" -o -name "monetdbd" \) 2>/dev/null
+  217  ls -la /home/mdaga/node-replicated-kernel/target/x86_64-nrk-none/release/build
+  218  git clone
+  219  cd ../
+  220  git clone git@github.com:ManDag004/librettos-packages.git
+  221  cd librettos-packages/
+  222  git checkout be303d8bfc2c40d63704848bb3acd9e075dd61e4
+  223  cd ../memcached/
+  224  ./autogen.sh 
+  225  cargo tmp
+  226  cargo new tmp
+  227  cd tmp/
+  228  cd src/
+  229  cd ../
+  230  /home/mdaga/node-replicated-kernel/target/x86_64-nrk-none/release/hello_world.bin
+  231  /home/mdaga/node-replicated-kernel/target/x86_64-nrk-none/release/memcachedbench.bin
+  232  git clone https://github.com/vmware-labs/node-replicated-kernel.git
+  233  cd node-replicated-kernel/
+  234  cd kernel/
+  235  python3 ./run.py
+  236  conda activate nrk
+  237  python3 ./run.py
+  238  sed -i'' -e 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  239  cd ../
+  240  sed -i'' -e 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  241  git submodule update --init
+  242  cd kernel/
+  243  python3 ./run.py 
+  244  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  245  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks --nocapture
+  246  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks 
+  247  RUST_BACKTRACE=1 RUST_TEST_THREADS=1 cargo test --bin nrk
+  248  RUST_TEST_THREADS=1 cargo test --features smoke --test integration-test
+  249  RUST_TEST_THREADS=1 cargo test --features smoke --test s00_core_tests
+  250  RUST_TEST_THREADS=1 cargo test --features smoke --test s01_kernel_low_tests
+  251  RUST_TEST_THREADS=1 cargo test --features smoke --test s02_kernel_high_tests
+  252  RUST_TEST_THREADS=1 cargo test --features smoke --test s03_kernel_high_tests
+  253  RUST_TEST_THREADS=1 cargo test --features smoke --test 8e6a086e
+  254  RUST_TEST_THREADS=1 cargo test --features smoke --test s04_user_runtime_tests
+  255  RUST_TEST_THREADS=1 cargo test --features smoke --test s05_user_app_tests
+  256  RUST_TEST_THREADS=1 cargo test --features smoke --test s06_rackscale_tests
+  257  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks
+  258  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  259  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture -v
+  260  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  261  ./memcachedbench.bin --help
+  262  find / -type f -name memcachedbench.bin 2>/dev/null
+  263  cd /home/mdaga/node-replicated-kernel/target/x86_64-nrk-none/release/
+  264  ./memcachedbench.bin --help
+  265  cd ../../../kernel/
+  266  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  267  cargo test --test hello_world
+  268  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  269  cargo test --test hello_world
+  270  RUST_TEST_THREADS=1 cargo test --features smoke --test hello_world
+  271  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  272  RUST_TEST_THREADS=1 cargo test --features smoke --test hello_world
+  273  history > history.txt
+  274  htop
+  275  pwd
+  276  cd librettos-packages/
+  277  git status
+  278  git add .
+  279  git status
+  280  git commit -m 'Add hello_world'
+  281  git push
+  282  git push origin HEAD:my-new-branch
+  283  git push origin HEAD:refs/heads/my-new-branch
+  284  git checkout my-new-branch
+  285  cd ../
+  286  rm -r librettos-packages/
+  287  git clone git@github.com:ManDag004/librettos-packages.git
+  288  git checkout my-new-branch
+  289  cd librettos-packages/
+  290  git checkout my-new-branch
+  291  cd /home/mdaga/node-replicated-kernel/target/x86_64-nrk-none/release/build/rkapps-b81ce854b17d3eb0/out
+  292  git checkout my-new-branch
+  293  git status
+  294  ls
+  295  PS1='[REXPECT_PROMPT>'
+  296  sudo dhcpd -f -d tap0 --no-pid -cf ./tests/dhcpd.conf
+  297  quit
+  298  PS1='[REXPECT_PROMPT>'
+  299  sudo dhcpd -f -d tap0 --no-pid -cf ./tests/dhcpd.conf
+  300  PS1='[REXPECT_PROMPT>'
+  301  sudo dhcpd -f -d tap0 --no-pid -cf ./tests/dhcpd.conf
+  302  PS1='[REXPECT_PROMPT>'
+  303  sudo dhcpd -f -d tap0 --no-pid -cf ./tests/dhcpd.conf
+  304  PS1='[REXPECT_PROMPT>'
+  305  sudo dhcpd -f -d tap0 --no-pid -cf ./tests/dhcpd.conf
+  306  quit
+  307  PS1='[REXPECT_PROMPT>'
+  308  sudo dhcpd -f -d tap0 --no-pid -cf ./tests/dhcpd.conf
+  309  PS1='[REXPECT_PROMPT>'
+  310  sudo dhcpd -f -d tap0 --no-pid -cf ./tests/dhcpd.conf
+  311  git clone https://github.com/vmware-labs/node-replicated-kernel.git
+  312  find / -type f -name "build*"
+  313  sudo find /home/mdaga/node-replicated-kernel/ -type f -name "build*"
+  314  conda activate nrk
+  315  cd node-replicated-kernel/
+  316  sed -i'' -e 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  317  git submodule update --init
+  318  bash setup.sh 
+  319  cd kernel/
+  320  bash setup.sh
+  321  cd ../
+  322  bash setup.sh
+  323  cd kernel/
+  324  python3 ./run.py --norun
+  325  RUST_BACKTRACE=1 RUST_TEST_THREADS=1 cargo test --bin nrk
+  326  RUST_TEST_THREADS=1 cargo test --features smoke --test integration-test
+  327  cd ../
+  328  RUST_TEST_THREADS=1 cargo test --features smoke --test integration-test
+  329  cd kernel/
+  330  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- --ignored s10_memcached_benchmark_internal --nocapture
+  331  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  332  python3 ./run.py --norun
+  333  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  334  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello_world_internal --nocapture
+  335  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  336  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello_world_internal --nocapture
+  337  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  338  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello_world_internal --nocapture
+  339  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  340  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello_world_internal --nocapture
+  341  run.py --kfeatures integration-test --ufeatures rkapps:hello-world --mods rkapps --release --norun net --no-network-setup
+  342  cd ../
+  343  run.py --kfeatures integration-test --ufeatures rkapps:hello-world --mods rkapps --release --norun net --no-network-setup
+  344  cd kernel/
+  345  python3 run.py --kfeatures integration-test --ufeatures rkapps:hello-world --mods rkapps --release --norun net --no-network-setup
+  346  cd ../
+  347  cd kernel/
+  348  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello_world_internal --nocapture
+  349  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  350  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello_world_internal --nocapture
+  351  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_memcached_benchmark_internal --nocapture
+  352  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello_world_internal --nocapture
+  353  history > history.txt
+  354  find . \( -name "memcachedbench.bin" -o -name "memcached" \) 2>/dev/null
+  355  cd hello-world/
+  356  make
+  357  cd hello/
+  358  make
+  359  cd ../
+  360  make
+  361  cd /home/mdaga/node-replicated-kernel/target/x86_64-nrk-none/release/build/rkapps-2e2fddf2afc4a607/out/hello-world
+  362  ./build/hello-world 
+  363  make
+  364  cd /home/mdaga/node-replicated-kernel/target/x86_64-nrk-none/release/build/rkapps-b81ce854b17d3eb0/out/memcached-bench
+  365  make
+  366  PS1='[REXPECT_PROMPT>'
+  367  sudo dhcpd -f -d tap0 --no-pid -cf ./tests/dhcpd.conf
+  368  PS1='[REXPECT_PROMPT>'
+  369  sudo dhcpd -f -d tap0 --no-pid -cf ./tests/dhcpd.conf
+  370  git clone git@github.com:ManDag004/librettos-packages.git
+  371  git checkout be303d8bfc2c40d63704848bb3acd9e075dd61e4
+  372  git reset --hard be303d8bfc2c40d63704848bb3acd9e075dd61e4
+  373  cd librettos-packages/
+  374  git checkout be303d8bfc2c40d63704848bb3acd9e075dd61e4
+  375  git branch -d my-new-branch
+  376  git branch -r
+  377  git branch -d origin/my-new-branch
+  378  git branch -d --remote origin/my-new-branch
+  379  git branch -r
+  380  git status
+  381  git add .
+  382  git commit -m "Add hello-world"
+  383  git push origin HEAD:refs/heads/my-new-branch
+  384  git branch -D my-new-branch
+  385  git push origin --delete my-new-branch
+  386  git push origin HEAD:refs/heads/my-new-branch
+  387  cd ../
+  388  git clone git@github.com:ManDag004/librettos-packages.git
+  389  git push origin --delete my-new-branch
+  390  cd librettos-packages/
+  391  git push origin --delete my-new-branch
+  392  git status
+  393  git add .
+  394  git status
+  395  git commit -m "Add hello-world"
+  396  git push origin HEAD:refs/heads/my-new-branch
+  397  git status
+  398  git add .
+  399  git commit -m "Update contents"
+  400  git push
+  401  git status
+  402  git add .
+  403  git commit -m "Made it compatible with rumprun"
+  404  git push
+  405  git status
+  406  git add .
+  407  git commit -m "Made it compatible with rumprun Attempt2"
+  408  git push
+  409  git add .
+  410  git commit -m "Made it compatible with rumprun Attempt3"
+  411  git push
+  412  git add .
+  413  git commit -m "Made it compatible with rumprun Attempt4"
+  414  git push
+  415  git add .
+  416  git commit -m "Change Print Statement"
+  417  git push
+  418  PS1='[REXPECT_PROMPT>'
+  419  sudo dhcpd -f -d tap0 --no-pid -cf ./tests/dhcpd.conf
+  420  PS1='[REXPECT_PROMPT>'
+  421  sudo dhcpd -f -d tap0 --no-pid -cf ./tests/dhcpd.conf
+  422  PS1='[REXPECT_PROMPT>'
+  423  sudo dhcpd -f -d tap0 --no-pid -cf ./tests/dhcpd.conf
+  424  tmux ls
+  425  make results
+  426  cd lmbench/src/
+  427  make results
+  428  tmux a -t lmbench/
+  429  tmux a -t lm
+  430  conda activate nrk
+  431  cd node-replicated-kernel/
+  432  cd kernel/
+  433  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello-world --nocapture
+  434  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello_world --nocapture
+  435  python3 ./run.py 
+  436  clear
+  437  python3 ./run.py 
+  438  python3 ./run.py --kfeatures rackscale
+  439  python3 ./run.py --kfeatures cause-pfault-early
+  440  conda activate nrk
+  441  cd node-replicated-kernel/
+  442  cd kernel/
+  443  python3 ./run.py --kfeatures bench-vmops-unmaplat
+  444  python3 ./run.py 
+  445  python3 ./run.py --kfeatures bench-vmops
+  446  cd ../
+  447  python3 ./run.py --kfeatures bench-vmops
+  448  cd kernel/
+  449  python3 ./run.py --kfeatures bench-vmops
+  450  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_vmops_benchmark --nocapture
+  451  python3 ./run.py --kfeatures bench-vmops --mods init
+  452  python3 ./run.py --ufeatures bench-vmops
+  453  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_vmops_benchmark --nocapture
+  454  python3 ./run.py --ufeatures bench-vmops,smoke
+  455  "python3" "run.py" "--kfeatures" "integration-test" "--ufeatures" "bench-vmops,smoke" "--mods" "init" "--release" "--cmd" "log=info test=userspace-smp initargs=2" "--nic" "e1000" "--qemu-cores" "16" "--qemu-nodes" "2" "--qemu-node-offset" "0" "--qemu-memory" "16384" "--qemu-affinity" "[]"
+  456  "python3" "run.py" "--kfeatures" "integration-test" "--ufeatures" "bench-vmops,smoke,latency" "--mods" "init" "--release" "--cmd" "log=info test=userspace-smp initargs=2" "--nic" "e1000" "--qemu-cores" "16" "--qemu-nodes" "2" "--qemu-node-offset" "0" "--qemu-memory" "16384" "--qemu-affinity" "[]"
+  457  "python3" "run.py" "--ufeatures" "bench-vmops,smoke,latency" "--mods" "init" "--release" "--cmd" "log=info test=userspace-smp initargs=2" "--nic" "e1000" "--qemu-cores" "16" "--qemu-nodes" "2" "--qemu-node-offset" "0" "--qemu-memory" "16384" "--qemu-affinity" "[]"
+  458  "python3" "run.py" "--ufeatures" "bench-vmops,smoke,latency" "--mods" "init" "--release" "--cmd" "log=info test=userspace-smp initargs=2" "--nic" "e1000" 
+  459  "python3" "run.py" "--kfeatures" "integration-test" "--ufeatures" "bench-vmops" "--mods" "init" "--release" "--cmd" "log=info test=userspace-smp initargs=2" "--nic" "e1000" "--qemu-cores" "16" "--qemu-nodes" "2" "--qemu-node-offset" "0" "--qemu-memory" "16384" "--qemu-affinity" "[]"
+  460  "python3" "run.py" "--kfeatures" "integration-test" "--ufeatures" "bench-vmops,smoke" "--mods" "init" "--release" "--cmd" "log=info test=userspace-smp initargs=2" "--nic" "e1000" "--qemu-cores" "16" "--qemu-nodes" "2" "--qemu-node-offset" "0" "--qemu-memory" "16384" "--qemu-affinity" "[]"
+  461  python3 ./run.py --ufeatures bench-vmops
+  462  "python3" "run.py" "--kfeatures" "integration-test" "--ufeatures" "bench-vmops" "--mods" "init" "--release" "--cmd" "log=info test=userspace-smp initargs=2" "--nic" "e1000" "--qemu-cores" "16" "--qemu-nodes" "2" "--qemu-node-offset" "0" "--qemu-memory" "16384" "--qemu-affinity" "[]"
+  463  "python3" "run.py" "--kfeatures" "integration-test" "--ufeatures" "bench-vmops-unmaplat" "--mods" "init" "--release" "--cmd" "log=info test=userspace-smp initargs=2" "--nic" "e1000" "--qemu-cores" "16" "--qemu-nodes" "2" "--qemu-node-offset" "0" "--qemu-memory" "16384" "--qemu-affinity" "[]"
+  464  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_vmops_unmaplat_latency_benchmark --nocapture
+  465  python3 ./run.py --ufeatures bench-vmops-unmaplat
+  466  conda activate nrk
+  467  cd node-replicated-kernel/kernel/
+  468  python3 ./run.py 
+  469  RUST_TEST_THREADS=1 cargo test --features smoke --test s10_benchmarks -- s10_hello_world --nocapture
+  470  cd lmbench/
+  471  conda activate l
+  472  conda info  --envs
+  473  make results 
+  474  make
+  475  find ./ hello-world.bin
+  476  cd node-replicated-kernel/
+  477  find . -name "hello-world.bin"
+  478  find . -name "hello-world.c"
+  479  cd ../lmbench/
+  480  git status
+  481  cd ../librettos-packages/
+  482  git status
+  483  git log
+  484  cd librettos-packages/
+  485  history > history.txt

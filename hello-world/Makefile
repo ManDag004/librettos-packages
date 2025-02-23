@@ -1,7 +1,3 @@
-# Minimal Makefile for hello-world
-
-# Use the compiler from the toolchain provided in RUMPRUN_TOOLCHAIN_TUPLE;
-# if not set, you might default to gcc.
 CC := $(RUMPRUN_TOOLCHAIN_TUPLE)-gcc
 CFLAGS := -O2
 
