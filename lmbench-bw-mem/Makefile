@@ -10,7 +10,7 @@ build:
 
 # Clone lmbench if not already present
 lmbench:
-	git clone https://github.com/intel/lmbench.git; fi
+	git clone https://github.com/intel/lmbench.git
 
 # Build bw_mem as a single target with dependencies
 build/bw_mem: lmbench | build
