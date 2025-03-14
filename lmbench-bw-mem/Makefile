@@ -9,8 +9,12 @@ all: build/bw_mem
 build:
 	mkdir -p build
 
+# Make sure lmbench scripts are executable
+fix-permissions:
+	chmod +x lmbench/scripts/*
+
 # Build bw_mem using the lmbench build system
-build/bw_mem: build
+build/bw_mem: build fix-permissions
 	cd lmbench/src && \
 	CC="$(CC)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
 	O="$(BUILD_DIR)" \
@@ -24,4 +28,4 @@ clean:
 	rm -rf build
 	-cd lmbench/src && $(MAKE) clean
 
-.PHONY: all clean
+.PHONY: all clean fix-permissions
