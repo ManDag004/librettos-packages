@@ -4,15 +4,14 @@ LDFLAGS := -lm
 
 all: build/bw_mem
 
-build/bw_mem:
+lmbench:
+	git clone https://github.com/intel/lmbench.git
+
+build/bw_mem: lmbench
 	@mkdir -p build
-	# Override variables and build just bw_mem
-	cd lmbench && $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" OS="$(RUMPRUN_TOOLCHAIN_TUPLE)" build
-	# The binary will be in lmbench/bin/$(OS)/bw_mem
-	# Copy it to where our build system expects it
+	cd lmbench/src && $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" OS="$(RUMPRUN_TOOLCHAIN_TUPLE)" bw_mem
 	@mkdir -p build
-	@cp lmbench/bin/$(RUMPRUN_TOOLCHAIN_TUPLE)/bw_mem build/ 2>/dev/null || true
+	@find lmbench -name bw_mem -type f -exec cp {} build/ \; 2>/dev/null || true
 
 clean:
-	cd lmbench && $(MAKE) clean
-	rm -rf build
+	rm -rf lmbench build
