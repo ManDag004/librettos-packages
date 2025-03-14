@@ -2,31 +2,51 @@ CC := $(RUMPRUN_TOOLCHAIN_TUPLE)-gcc
 CFLAGS := -O2
 LDFLAGS := -lm
 
+# Define lmbench source directory
+LMBENCH_DIR := lmbench/src
+LMBENCH_INCLUDES := -I$(LMBENCH_DIR)
+
+# Object files needed for bw_mem
+OBJS := build/bw_mem.o \
+	build/lib_timing.o \
+	build/lib_mem.o \
+	build/lib_stats.o \
+	build/lib_debug.o \
+	build/getopt.o
+
 all: build/bw_mem
 
 # Clone lmbench if not already present
 lmbench:
 	git clone https://github.com/intel/lmbench.git
 
-# Build bw_mem directly from its source files
-build/bw_mem: lmbench
-	@mkdir -p build
-	# Create lmbench bin directory
-	mkdir -p lmbench/bin/$(RUMPRUN_TOOLCHAIN_TUPLE)
-	# First compile lib_timing.c
-	cd lmbench/src && $(CC) $(CFLAGS) -c lib_timing.c -o lib_timing.o
-	# Next compile lib_mem.c
-	cd lmbench/src && $(CC) $(CFLAGS) -c lib_mem.c -o lib_mem.o
-	# Next compile lib_stats.c
-	cd lmbench/src && $(CC) $(CFLAGS) -c lib_stats.c -o lib_stats.o
-	# Next compile getopt.c
-	cd lmbench/src && $(CC) $(CFLAGS) -c getopt.c -o getopt.o
-	# Compile bw_mem.c
-	cd lmbench/src && $(CC) $(CFLAGS) -c bw_mem.c -o bw_mem.o
-	# Link everything together
-	cd lmbench/src && $(CC) -o ../bin/$(RUMPRUN_TOOLCHAIN_TUPLE)/bw_mem bw_mem.o lib_timing.o lib_mem.o lib_stats.o getopt.o $(LDFLAGS)
-	# Copy the binary to our build directory
-	cp lmbench/bin/$(RUMPRUN_TOOLCHAIN_TUPLE)/bw_mem build/
+# Create build directory
+build:
+	mkdir -p build
+
+# Compile bw_mem.c
+build/bw_mem.o: lmbench $(LMBENCH_DIR)/bw_mem.c | build
+	$(CC) $(CFLAGS) $(LMBENCH_INCLUDES) -c $(LMBENCH_DIR)/bw_mem.c -o $@
+
+# Compile library files
+build/lib_timing.o: lmbench $(LMBENCH_DIR)/lib_timing.c | build
+	$(CC) $(CFLAGS) $(LMBENCH_INCLUDES) -c $(LMBENCH_DIR)/lib_timing.c -o $@
+
+build/lib_mem.o: lmbench $(LMBENCH_DIR)/lib_mem.c | build
+	$(CC) $(CFLAGS) $(LMBENCH_INCLUDES) -c $(LMBENCH_DIR)/lib_mem.c -o $@
+
+build/lib_stats.o: lmbench $(LMBENCH_DIR)/lib_stats.c | build
+	$(CC) $(CFLAGS) $(LMBENCH_INCLUDES) -c $(LMBENCH_DIR)/lib_stats.c -o $@
+
+build/lib_debug.o: lmbench $(LMBENCH_DIR)/lib_debug.c | build
+	$(CC) $(CFLAGS) $(LMBENCH_INCLUDES) -c $(LMBENCH_DIR)/lib_debug.c -o $@
+
+build/getopt.o: lmbench $(LMBENCH_DIR)/getopt.c | build
+	$(CC) $(CFLAGS) $(LMBENCH_INCLUDES) -c $(LMBENCH_DIR)/getopt.c -o $@
+
+# Link all object files into bw_mem binary
+build/bw_mem: $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LDFLAGS)
 
 clean:
 	rm -rf build
