@@ -5,16 +5,12 @@ BUILD_DIR := $(shell pwd)/build
 
 all: build/bw_mem
 
-# Clone lmbench if not already present
-lmbench:
-	git clone https://github.com/intel/lmbench.git
-
 # Create build directory
 build:
 	mkdir -p build
 
 # Build bw_mem using the lmbench build system
-build/bw_mem: lmbench build
+build/bw_mem: build
 	cd lmbench/src && \
 	CC="$(CC)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
 	O="$(BUILD_DIR)" \
