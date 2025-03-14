@@ -69,74 +69,22 @@ main(int ac, char **av)
 
 	state.overhead = 0;
 
-	while (( c = getopt(ac, av, "P:W:N:")) != EOF) {
-		switch(c) {
-		case 'P':
-			parallel = atoi(optarg);
-			if (parallel <= 0) lmbench_usage(ac, av, usage);
-			break;
-		case 'W':
-			warmup = atoi(optarg);
-			break;
-		case 'N':
-			repetitions = atoi(optarg);
-			break;
-		default:
-			lmbench_usage(ac, av, usage);
-			break;
-		}
-	}
-
-	/* should have two, possibly three [indicates align] arguments left */
+	// Skip command line parsing, use hard-coded values
 	state.aligned = state.need_buf2 = 0;
-	if (optind + 3 == ac) {
-		state.aligned = 1;
-	} else if (optind + 2 != ac) {
-		lmbench_usage(ac, av, usage);
-	}
-
-	nbytes = state.nbytes = bytes(av[optind]);
-	if (state.nbytes < 512) { /* this is the number of bytes in the loop */
-		lmbench_usage(ac, av, usage);
-	}
-
-	if (streq(av[optind+1], "cp") ||
-	    streq(av[optind+1], "fcp") || streq(av[optind+1], "bcopy")) {
-		state.need_buf2 = 1;
-	}
-		
-	if (streq(av[optind+1], "rd")) {
-		benchmp(init_loop, rd, cleanup, 0, parallel, 
-			warmup, repetitions, &state);
-	} else if (streq(av[optind+1], "wr")) {
-		benchmp(init_loop, wr, cleanup, 0, parallel, 
-			warmup, repetitions, &state);
-	} else if (streq(av[optind+1], "rdwr")) {
-		benchmp(init_loop, rdwr, cleanup, 0, parallel, 
-			warmup, repetitions, &state);
-	} else if (streq(av[optind+1], "cp")) {
-		benchmp(init_loop, mcp, cleanup, 0, parallel, 
-			warmup, repetitions, &state);
-	} else if (streq(av[optind+1], "frd")) {
-		benchmp(init_loop, frd, cleanup, 0, parallel, 
-			warmup, repetitions, &state);
-	} else if (streq(av[optind+1], "fwr")) {
-		benchmp(init_loop, fwr, cleanup, 0, parallel, 
-			warmup, repetitions, &state);
-	} else if (streq(av[optind+1], "fcp")) {
-		benchmp(init_loop, fcp, cleanup, 0, parallel, 
-			warmup, repetitions, &state);
-	} else if (streq(av[optind+1], "bzero")) {
-		benchmp(init_loop, loop_bzero, cleanup, 0, parallel, 
-			warmup, repetitions, &state);
-	} else if (streq(av[optind+1], "bcopy")) {
-		benchmp(init_loop, loop_bcopy, cleanup, 0, parallel, 
-			warmup, repetitions, &state);
-	} else {
-		lmbench_usage(ac, av, usage);
-	}
-	adjusted_bandwidth(gettime(), nbytes, 
-			   get_n() * parallel, state.overhead);
+    
+	// Hard-code size to 4096M
+	nbytes = state.nbytes = 4096 * 1024 * 1024;
+	
+	// Hard-code test type to "rd" (read test)
+	// No need to set need_buf2 for "rd" test
+	
+	// Run the read benchmark
+	benchmp(init_loop, rd, cleanup, 0, parallel,
+					warmup, repetitions, &state);
+	
+	adjusted_bandwidth(gettime(), nbytes,
+										get_n() * parallel, state.overhead);
+	
 	return(0);
 }
 
