@@ -8,12 +8,8 @@ all: build/bw_mem
 build:
 	mkdir -p build
 
-# Clone lmbench if not already present
-lmbench:
-	git clone https://github.com/intel/lmbench.git
-
 # Build bw_mem as a single target with dependencies
-build/bw_mem: lmbench | build
+build/bw_mem: build
 	$(CC) $(CFLAGS) -Ilmbench/src \
 		-o build/bw_mem \
 		lmbench/src/bw_mem.c \
