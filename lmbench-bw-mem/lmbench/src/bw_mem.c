@@ -59,32 +59,25 @@ void	adjusted_bandwidth(uint64 t, uint64 b, uint64 iter, double ovrhd);
 int
 main(int ac, char **av)
 {
-	int	parallel = 1;
-	int	warmup = 0;
-	int	repetitions = TRIES;
-	size_t	nbytes;
-	state_t	state;
-	int	c;
-	char	*usage = "[-P <parallelism>] [-W <warmup>] [-N <repetitions>] <size> what [conflict]\nwhat: rd wr rdwr cp fwr frd fcp bzero bcopy\n<size> must be larger than 512";
-
+	int parallel = 1;
+	int warmup = 0;
+	int repetitions = TRIES;
+	size_t nbytes;
+	state_t state;
+	
+	// Force parameters instead of parsing arguments
 	state.overhead = 0;
-
-	// Skip command line parsing, use hard-coded values
 	state.aligned = state.need_buf2 = 0;
-    
-	// Hard-code size to 4096M
+	
+	// Hard-code 4096M size
 	nbytes = state.nbytes = 4096 * 1024 * 1024;
 	
-	// Hard-code test type to "rd" (read test)
-	// No need to set need_buf2 for "rd" test
-	
-	// Run the read benchmark
-	benchmp(init_loop, rd, cleanup, 0, parallel,
+	// Hard-code "rd" operation
+	benchmp(init_loop, rd, cleanup, 0, parallel, 
 					warmup, repetitions, &state);
 	
-	adjusted_bandwidth(gettime(), nbytes,
-										get_n() * parallel, state.overhead);
-	
+	adjusted_bandwidth(gettime(), nbytes, 
+						 get_n() * parallel, state.overhead);
 	return(0);
 }
 
