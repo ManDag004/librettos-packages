@@ -70,7 +70,7 @@ main(int ac, char **av)
 	state.aligned = state.need_buf2 = 0;
 	
 	// Hard-code 4096M size
-	nbytes = state.nbytes = 4096 * 1024 * 1024;
+	nbytes = state.nbytes = 1024;
 	
 	// Hard-code "rd" operation
 	benchmp(init_loop, rd, cleanup, 0, parallel, 
