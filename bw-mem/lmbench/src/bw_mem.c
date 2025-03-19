@@ -1,15 +1,15 @@
 /*
- * bw_mem.c - simple memory write bandwidth benchmark
- *
- * Usage: bw_mem [-P <parallelism>] [-W <warmup>] [-N <repetitions>] size what
- *        what: rd wr rdwr cp fwr frd fcp bzero bcopy
- *
- * Copyright (c) 1994-1996 Larry McVoy.  Distributed under the FSF GPL with
- * additional restriction that results may published only if
- * (1) the benchmark is unmodified, and
- * (2) the version in the sccsid below is included in the report.
- * Support for this development by Sun Microsystems is gratefully acknowledged.
- */
+* bw_mem.c - simple memory write bandwidth benchmark
+*
+* Usage: bw_mem [-P <parallelism>] [-W <warmup>] [-N <repetitions>] size what
+*        what: rd wr rdwr cp fwr frd fcp bzero bcopy
+*
+* Copyright (c) 1994-1996 Larry McVoy.  Distributed under the FSF GPL with
+* additional restriction that results may published only if
+* (1) the benchmark is unmodified, and
+* (2) the version in the sccsid below is included in the report.
+* Support for this development by Sun Microsystems is gratefully acknowledged.
+*/
 char	*id = "$Id$";
 
 #include "bench.h"
@@ -17,18 +17,18 @@ char	*id = "$Id$";
 #define TYPE    int
 
 /*
- * rd - 4 byte read, 32 byte stride
- * wr - 4 byte write, 32 byte stride
- * rdwr - 4 byte read followed by 4 byte write to same place, 32 byte stride
- * cp - 4 byte read then 4 byte write to different place, 32 byte stride
- * fwr - write every 4 byte word
- * frd - read every 4 byte word
- * fcp - copy every 4 byte word
- *
- * All tests do 512 byte chunks in a loop.
- *
- * XXX - do a 64bit version of this.
- */
+* rd - 4 byte read, 32 byte stride
+* wr - 4 byte write, 32 byte stride
+* rdwr - 4 byte read followed by 4 byte write to same place, 32 byte stride
+* cp - 4 byte read then 4 byte write to different place, 32 byte stride
+* fwr - write every 4 byte word
+* frd - read every 4 byte word
+* fcp - copy every 4 byte word
+*
+* All tests do 512 byte chunks in a loop.
+*
+* XXX - do a 64bit version of this.
+*/
 void	rd(iter_t iterations, void *cookie);
 void	wr(iter_t iterations, void *cookie);
 void	rdwr(iter_t iterations, void *cookie);
@@ -78,7 +78,7 @@ main(int ac, char **av)
 					warmup, repetitions, &state);
 	printf("done benchmp!\n");
 	adjusted_bandwidth(gettime(), nbytes, 
-						 get_n() * parallel, state.overhead);
+						get_n() * parallel, state.overhead);
 	printf("adjusted!\n");
 	return(0);
 }
@@ -96,7 +96,7 @@ init_loop(iter_t iterations, void *cookie)
 
 	if (iterations) return;
 
-        state->buf = (TYPE *)valloc(state->nbytes);
+				state->buf = (TYPE *)valloc(state->nbytes);
 	state->buf2_orig = NULL;
 	state->lastone = (TYPE*)state->buf - 1;
 	state->lastone = (TYPE*)((char *)state->buf + state->nbytes - 512);
@@ -145,8 +145,8 @@ rd(iter_t iterations, void *cookie)
 	register int sum = 0;
 
 	while (iterations-- > 0) {
-	    register TYPE *p = state->buf;
-	    while (p <= lastone) {
+			register TYPE *p = state->buf;
+			while (p <= lastone) {
 		sum += 
 #define	DOIT(i)	p[i]+
 		DOIT(0) DOIT(4) DOIT(8) DOIT(12) DOIT(16) DOIT(20) DOIT(24)
@@ -156,7 +156,7 @@ rd(iter_t iterations, void *cookie)
 		DOIT(104) DOIT(108) DOIT(112) DOIT(116) DOIT(120) 
 		p[124];
 		p +=  128;
-	    }
+			}
 	}
 	use_int(sum);
 }
@@ -169,8 +169,8 @@ wr(iter_t iterations, void *cookie)
 	register TYPE *lastone = state->lastone;
 
 	while (iterations-- > 0) {
-	    register TYPE *p = state->buf;
-	    while (p <= lastone) {
+			register TYPE *p = state->buf;
+			while (p <= lastone) {
 #define	DOIT(i)	p[i] = 1;
 		DOIT(0) DOIT(4) DOIT(8) DOIT(12) DOIT(16) DOIT(20) DOIT(24)
 		DOIT(28) DOIT(32) DOIT(36) DOIT(40) DOIT(44) DOIT(48) DOIT(52)
@@ -178,7 +178,7 @@ wr(iter_t iterations, void *cookie)
 		DOIT(80) DOIT(84) DOIT(88) DOIT(92) DOIT(96) DOIT(100)
 		DOIT(104) DOIT(108) DOIT(112) DOIT(116) DOIT(120) DOIT(124);
 		p +=  128;
-	    }
+			}
 	}
 }
 #undef	DOIT
@@ -191,8 +191,8 @@ rdwr(iter_t iterations, void *cookie)
 	register int sum = 0;
 
 	while (iterations-- > 0) {
-	    register TYPE *p = state->buf;
-	    while (p <= lastone) {
+			register TYPE *p = state->buf;
+			while (p <= lastone) {
 #define	DOIT(i)	sum += p[i]; p[i] = 1;
 		DOIT(0) DOIT(4) DOIT(8) DOIT(12) DOIT(16) DOIT(20) DOIT(24)
 		DOIT(28) DOIT(32) DOIT(36) DOIT(40) DOIT(44) DOIT(48) DOIT(52)
@@ -200,7 +200,7 @@ rdwr(iter_t iterations, void *cookie)
 		DOIT(80) DOIT(84) DOIT(88) DOIT(92) DOIT(96) DOIT(100)
 		DOIT(104) DOIT(108) DOIT(112) DOIT(116) DOIT(120) DOIT(124);
 		p +=  128;
-	    }
+			}
 	}
 	use_int(sum);
 }
@@ -214,9 +214,9 @@ mcp(iter_t iterations, void *cookie)
 	TYPE* p_save = NULL;
 
 	while (iterations-- > 0) {
-	    register TYPE *p = state->buf;
-	    register TYPE *dst = state->buf2;
-	    while (p <= lastone) {
+			register TYPE *p = state->buf;
+			register TYPE *dst = state->buf2;
+			while (p <= lastone) {
 #define	DOIT(i)	dst[i] = p[i];
 		DOIT(0) DOIT(4) DOIT(8) DOIT(12) DOIT(16) DOIT(20) DOIT(24)
 		DOIT(28) DOIT(32) DOIT(36) DOIT(40) DOIT(44) DOIT(48) DOIT(52)
@@ -225,8 +225,8 @@ mcp(iter_t iterations, void *cookie)
 		DOIT(104) DOIT(108) DOIT(112) DOIT(116) DOIT(120) DOIT(124);
 		p += 128;
 		dst += 128;
-	    }
-	    p_save = p;
+			}
+			p_save = p;
 	}
 	use_pointer(p_save);
 }
@@ -240,8 +240,8 @@ fwr(iter_t iterations, void *cookie)
 	TYPE* p_save = NULL;
 
 	while (iterations-- > 0) {
-	    register TYPE *p = state->buf;
-	    while (p <= lastone) {
+			register TYPE *p = state->buf;
+			while (p <= lastone) {
 #define	DOIT(i)	p[i]=
 		DOIT(0) DOIT(1) DOIT(2) DOIT(3) DOIT(4) DOIT(5) DOIT(6)
 		DOIT(7) DOIT(8) DOIT(9) DOIT(10) DOIT(11) DOIT(12)
@@ -266,8 +266,8 @@ fwr(iter_t iterations, void *cookie)
 		DOIT(118) DOIT(119) DOIT(120) DOIT(121) DOIT(122)
 		DOIT(123) DOIT(124) DOIT(125) DOIT(126) DOIT(127) 1;
 		p += 128;
-	    }
-	    p_save = p;
+			}
+			p_save = p;
 	}
 	use_pointer(p_save);
 }
@@ -281,8 +281,8 @@ frd(iter_t iterations, void *cookie)
 	register TYPE *lastone = state->lastone;
 
 	while (iterations-- > 0) {
-	    register TYPE *p = state->buf;
-	    while (p <= lastone) {
+			register TYPE *p = state->buf;
+			while (p <= lastone) {
 		sum +=
 #define	DOIT(i)	p[i]+
 		DOIT(0) DOIT(1) DOIT(2) DOIT(3) DOIT(4) DOIT(5) DOIT(6)
@@ -308,7 +308,7 @@ frd(iter_t iterations, void *cookie)
 		DOIT(118) DOIT(119) DOIT(120) DOIT(121) DOIT(122)
 		DOIT(123) DOIT(124) DOIT(125) DOIT(126) p[127];
 		p += 128;
-	    }
+			}
 	}
 	use_int(sum);
 }
@@ -321,9 +321,9 @@ fcp(iter_t iterations, void *cookie)
 	register TYPE *lastone = state->lastone;
 
 	while (iterations-- > 0) {
-	    register TYPE *p = state->buf;
-	    register TYPE *dst = state->buf2;
-	    while (p <= lastone) {
+			register TYPE *p = state->buf;
+			register TYPE *dst = state->buf2;
+			while (p <= lastone) {
 #define	DOIT(i)	dst[i]=p[i];
 		DOIT(0) DOIT(1) DOIT(2) DOIT(3) DOIT(4) DOIT(5) DOIT(6)
 		DOIT(7) DOIT(8) DOIT(9) DOIT(10) DOIT(11) DOIT(12)
@@ -349,7 +349,7 @@ fcp(iter_t iterations, void *cookie)
 		DOIT(123) DOIT(124) DOIT(125) DOIT(126) DOIT(127)
 		p += 128;
 		dst += 128;
-	    }
+			}
 	}
 }
 
@@ -380,24 +380,28 @@ loop_bcopy(iter_t iterations, void *cookie)
 }
 
 /*
- * Almost like bandwidth() in lib_timing.c, but we need to adjust
- * bandwidth based upon loop overhead.
- */
+* Almost like bandwidth() in lib_timing.c, but we need to adjust
+* bandwidth based upon loop overhead.
+*/
 void adjusted_bandwidth(uint64 time, uint64 bytes, uint64 iter, double overhd)
 {
 #define MB	(1000. * 1000.)
 	extern FILE *ftiming;
 	double secs = ((double)time / (double)iter - overhd) / 1000000.0;
 	double mb;
-	(void) printf("DEBUG: time=%llu iter=%llu overhd=%f secs=%f bytes=%llu mb=%f\n", 
+
+	mb = bytes / MB;
+	printf("DEBUG: time=%llu iter=%llu overhd=%f secs=%f bytes=%llu mb=%f\n", 
 		(unsigned long long)time, (unsigned long long)iter, 
 		overhd, secs, (unsigned long long)bytes, mb);
-  mb = bytes / MB;
+		
 	printf("Successfully got inside adjusted");
-	if (secs <= 0.)
+	if (secs <= 0.) {
+		printf("Seconds probably 0");
 		return;
+	}
 
-  if (!ftiming) ftiming = stderr;
+	if (!ftiming) ftiming = stderr;
 	printf("Successfully checked timing file");
 
 	if (mb < 1.) {
