@@ -1088,14 +1088,26 @@ ptime(uint64 n)
 uint64
 tvdelta(struct timeval *start, struct timeval *stop)
 {
-	struct timeval td;
-	uint64	usecs;
-
-	tvsub(&td, stop, start);
-	usecs = td.tv_sec;
-	usecs *= 1000000;
-	usecs += td.tv_usec;
-	return (usecs);
+    struct timeval td;
+    uint64 usecs;
+    
+    printf("DEBUG_TIMING: start tv_sec=%ld tv_usec=%ld\n", 
+           start ? start->tv_sec : -1, start ? start->tv_usec : -1);
+    printf("DEBUG_TIMING: stop tv_sec=%ld tv_usec=%ld\n", 
+           stop ? stop->tv_sec : -1, stop ? stop->tv_usec : -1);
+    
+    tvsub(&td, stop, start);
+    
+    printf("DEBUG_TIMING: diff tv_sec=%ld tv_usec=%ld\n", 
+           td.tv_sec, td.tv_usec);
+    
+    usecs = td.tv_sec;
+    usecs *= 1000000;
+    usecs += td.tv_usec;
+    
+    printf("DEBUG_TIMING: final usecs=%llu\n", (unsigned long long)usecs);
+    
+    return (usecs);
 }
 
 void
@@ -1119,7 +1131,6 @@ tvsub(struct timeval * tdiff, struct timeval * t1, struct timeval * t0)
 uint64
 gettime(void)
 {
-	printf("hehehehehehehheheheheheheheheheh");
 	return (tvdelta(&start_tv, &stop_tv));
 }
 
