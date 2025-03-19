@@ -35,9 +35,9 @@ typedef unsigned char bool_t;
 #include        <sys/un.h>
 #include        <sys/resource.h>
 #define PORTMAP
-#include	<rpc/rpc.h>
+// #include	<rpc/rpc.h>
 #endif
-#include	<rpc/types.h>
+// #include	<rpc/types.h>
 
 #include 	<stdarg.h>
 #ifndef HAVE_uint
@@ -313,11 +313,11 @@ extern int handle_scheduler(int childno, int benchproc, int nbenchprocs);
  * It was generated using rpcgen.
  */
 
-#define XACT_PROG ((u_long)404040)
-#define XACT_VERS ((u_long)1)
-#define RPC_XACT ((u_long)1)
-#define RPC_EXIT ((u_long)2)
-extern char *rpc_xact_1();
-extern char *client_rpc_xact_1();
+// #define XACT_PROG ((u_long)404040)
+// #define XACT_VERS ((u_long)1)
+// #define RPC_XACT ((u_long)1)
+// #define RPC_EXIT ((u_long)2)
+// extern char *rpc_xact_1();
+// extern char *client_rpc_xact_1();
 
 #endif /* _BENCH_H */
