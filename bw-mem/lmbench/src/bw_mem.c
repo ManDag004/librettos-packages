@@ -395,15 +395,16 @@ void adjusted_bandwidth(uint64 time, uint64 bytes, uint64 iter, double overhd)
 
         if (!ftiming) ftiming = stderr;
 	if (mb < 1.) {
-		(void) printf(ftiming, "%.6f ", mb);
+		(void) printf("%.6f ", mb);
 	} else {
-		(void) printf(ftiming, "%.2f ", mb);
+		(void) printf("%.2f ", mb);
 	}
 	if (mb / secs < 1.) {
-		(void) printf(ftiming, "%.6f\n", mb/secs);
+		(void) printf("%.6f\n", mb/secs);
 	} else {
-		(void) printf(ftiming, "%.2f\n", mb/secs);
+		(void) printf("%.2f\n", mb/secs);
 	}
+	(void) printf("nana!\n");
 }
 
 
