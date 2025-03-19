@@ -389,19 +389,24 @@ void adjusted_bandwidth(uint64 time, uint64 bytes, uint64 iter, double overhd)
 	extern FILE *ftiming;
 	double secs = ((double)time / (double)iter - overhd) / 1000000.0;
 	double mb;
-	
-        mb = bytes / MB;
+	(void) printf("DEBUG: time=%llu iter=%llu overhd=%f secs=%f bytes=%llu mb=%f\n", 
+		(unsigned long long)time, (unsigned long long)iter, 
+		overhd, secs, (unsigned long long)bytes, mb);
+  mb = bytes / MB;
 	printf("Successfully got inside adjusted");
 	if (secs <= 0.)
 		return;
-        if (!ftiming) ftiming = stderr;
+
+  if (!ftiming) ftiming = stderr;
 	printf("Successfully checked timing file");
+
 	if (mb < 1.) {
 		(void) printf("%.6f ", mb);
 	} else {
 		(void) printf("%.2f ", mb);
 	}
 	printf("Successfully checked first condition");
+
 	if (mb / secs < 1.) {
 		(void) printf("%.6f\n", mb/secs);
 	} else {
