@@ -1119,6 +1119,7 @@ tvsub(struct timeval * tdiff, struct timeval * t1, struct timeval * t0)
 uint64
 gettime(void)
 {
+	printf("hehehehehehehheheheheheheheheheh");
 	return (tvdelta(&start_tv, &stop_tv));
 }
 
