@@ -59,12 +59,13 @@ void	adjusted_bandwidth(uint64 t, uint64 b, uint64 iter, double ovrhd);
 int
 main(int ac, char **av)
 {
+	printf("nana!\n");
 	int parallel = 1;
 	int warmup = 0;
 	int repetitions = TRIES;
 	size_t nbytes;
 	state_t state;
-	
+	printf("nana!\n");
 	// Force parameters instead of parsing arguments
 	state.overhead = 0;
 	state.aligned = state.need_buf2 = 0;
