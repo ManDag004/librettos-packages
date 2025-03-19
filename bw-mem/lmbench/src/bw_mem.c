@@ -391,16 +391,17 @@ void adjusted_bandwidth(uint64 time, uint64 bytes, uint64 iter, double overhd)
 	double mb;
 	
         mb = bytes / MB;
-
+	printf("Successfully got inside adjusted");
 	if (secs <= 0.)
 		return;
-
         if (!ftiming) ftiming = stderr;
+	printf("Successfully checked timing file");
 	if (mb < 1.) {
 		(void) printf("%.6f ", mb);
 	} else {
 		(void) printf("%.2f ", mb);
 	}
+	printf("Successfully checked first condition");
 	if (mb / secs < 1.) {
 		(void) printf("%.6f\n", mb/secs);
 	} else {
