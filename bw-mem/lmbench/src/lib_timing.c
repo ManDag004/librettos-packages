@@ -16,7 +16,7 @@
 #define	 _LIB /* bench.h needs this */
 #include "bench.h"
 
-/* #define _DEBUG */
+#define _DEBUG
 
 #define	nz(x)	((x) == 0 ? 1 : (x))
 
